@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { AiFillLeftCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
+  const Navigate = useNavigate();
   return (
     <Container>
       <Logo>
@@ -9,14 +11,14 @@ function Menu() {
       </Logo>
 
       <Navmenu>
-        <MenuItem>
-          <span>FAVOURITES DASHBOARD</span>
+        <MenuItem onClick={() => Navigate("/")}>
+          PORTFOLIO COMPETITOR INSIGHTS
         </MenuItem>
-        <MenuItem>
-          <span>REALTIME CHATGPT INSIGHTS(BETA)</span>
+        <MenuItem onClick={() => Navigate("/table")}>
+          TABLE FROM CSV DATA
         </MenuItem>
-        <MenuItem>PORTFOLIO COMPETITOR INSIGHTS</MenuItem>
-        <MenuItem>LINKEDIN INSIGHTS</MenuItem>
+        <MenuItem>DUMMY OPTION</MenuItem>
+        <MenuItem>DUMMY OPTION</MenuItem>
       </Navmenu>
 
       <Icon>

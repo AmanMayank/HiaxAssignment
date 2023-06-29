@@ -1,12 +1,15 @@
 import { Container } from "../styles";
 import Menu from "./Menu";
-import Content from "./Content";
+import PortFolioContent from "./PortFolioContent";
+import ExcelTable from "./ExcelTable";
 
-function Home() {
+function Home({ table }) {
+  console.log("table is = ", table);
   return (
     <Container>
       <Menu />
-      <Content />
+      {!table && <PortFolioContent />}
+      {table && <ExcelTable />}
     </Container>
   );
 }

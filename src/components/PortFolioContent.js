@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import CompanyPortFolio from "./CompanyPortfolio";
+import { useState } from "react";
 
-function Content() {
+function PortFolioContent() {
   const companies = [
     "Ithra",
     "Hindware",
@@ -18,8 +19,41 @@ function Content() {
     "Itc",
   ];
 
-  const renderedList = companies.map((company) => {
-    return <NavItem key={company}>{company}</NavItem>;
+  const [names, setNames] = useState([]);
+
+  //function to add company to list for comparison
+  const navItemClick = (item) => {
+    if (names.includes(item)) {
+      return;
+    }
+    const obj = [...names, item];
+    setNames(obj);
+  };
+
+  //function to remove company from comparison list
+  const removeCompany = (item) => {
+    const updatedNames = names.filter((name) => {
+      return name !== item;
+    });
+    setNames(updatedNames);
+  };
+
+  const companyList = companies.map((company) => {
+    return (
+      <NavItem onClick={() => navItemClick(company)} key={company}>
+        {company}
+      </NavItem>
+    );
+  });
+
+  const portfolios = names.map((name, index) => {
+    return (
+      <CompanyPortFolio
+        key={index}
+        name={name}
+        removeFunction={removeCompany}
+      />
+    );
   });
 
   return (
@@ -32,11 +66,9 @@ function Content() {
         <h2>Please select portfolios to compare</h2>
       </Title>
 
-      <NavMenu>{renderedList}</NavMenu>
+      <NavMenu>{companyList}</NavMenu>
 
-      <CompanyPortFolio />
-      <CompanyPortFolio />
-      <CompanyPortFolio />
+      {portfolios}
     </Container>
   );
 }
@@ -45,7 +77,7 @@ const Container = styled.div`
   grid-area: main;
   position: relative;
   background: #9b9eab;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -54,7 +86,7 @@ const Header = styled.div`
   color: white;
   padding: 5px 5px;
   text-align: center;
-  justify-content: center;
+  justify-portfoliocontent: center;
   width: 100%;
   position: absolute;
 `;
@@ -89,4 +121,4 @@ const NavItem = styled.li`
   }
 `;
 
-export default Content;
+export default PortFolioContent;

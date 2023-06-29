@@ -16,7 +16,7 @@ function SocialMediaBar() {
       <Logo>
         <AiFillTwitterCircle />
       </Logo>
-      <Logo>
+      <Logo className="active">
         <AiFillInstagram />
       </Logo>
       <Logo>
@@ -46,6 +46,13 @@ const SocialMediaHeader = styled.div`
   padding: 5px 100px;
   justify-content: space-between;
   text-align: center;
+
+  .active {
+    transform: scale(1.3);
+    --p: 100%;
+    color: #191f20;
+    cursor: pointer;
+  }
 `;
 
 const Logo = styled.div`

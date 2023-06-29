@@ -1,34 +1,46 @@
+import { useState } from "react";
 import styled from "styled-components";
 import SocialMediaBar from "./SocialMediaBar";
 import Graph from "./Graph";
 import sentimentData from "../data/sentimentData.json";
 import hashtagData from "../data/hashtagsdetails.json";
 
-function CompanyPortFolio() {
+function CompanyPortFolio({ name, removeFunction }) {
+  const [showSentiment, setShowSentiment] = useState(false);
+  const [showHashtag, setShowHashtag] = useState(false);
+
   return (
     <>
       <Symbol>
-        <h2>Symbol : Ithra</h2>
-        <RemoveButton>Remove</RemoveButton>
+        <h2>Symbol : {name}</h2>
+        <RemoveButton onClick={() => removeFunction(name)}>Remove</RemoveButton>
       </Symbol>
 
       <SocialMediaBar />
 
       <DataContainer>
         <ButtonContainer>
-          <Button>Sentiment</Button>
-          <Button>Hashtag</Button>
+          <Button onClick={() => setShowSentiment(true)}>Mean Sentiment</Button>
+          <Button onClick={() => setShowHashtag(true)}>Hashtag</Button>
         </ButtonContainer>
 
         <GraphContainer>
-          <GraphItem>
-            <Graph data={sentimentData} />
-            <RemoveButton>Remove</RemoveButton>
-          </GraphItem>
-          <GraphItem>
-            <Graph data={hashtagData} />
-            <RemoveButton>Remove</RemoveButton>
-          </GraphItem>
+          {showSentiment && (
+            <GraphItem>
+              <Graph data={sentimentData} />
+              <RemoveButton onClick={() => setShowSentiment(false)}>
+                Remove
+              </RemoveButton>
+            </GraphItem>
+          )}
+          {showHashtag && (
+            <GraphItem>
+              <Graph data={hashtagData} />
+              <RemoveButton onClick={() => setShowHashtag(false)}>
+                Remove
+              </RemoveButton>
+            </GraphItem>
+          )}
         </GraphContainer>
       </DataContainer>
     </>

@@ -17,7 +17,6 @@ function Graph({ data }) {
       index < 6 && xaxisData.push(dateSplit(item.date));
       index < 6 && yaxisData.push(item.meanSentiment || item.total);
     });
-  console.log(xaxisData, yaxisData);
 
   return (
     <Plot

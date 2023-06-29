@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-  AiFillLeftCircle,
-  AiFillAccountBook,
-  AiFillRightCircle,
-} from "react-icons/ai";
+import { AiFillLeftCircle } from "react-icons/ai";
 
 function Menu() {
   return (
@@ -32,18 +28,19 @@ function Menu() {
 
 const Container = styled.div`
   grid-area: leftside;
-  background-image: linear-gradient(#505157, #40e2ec);
+  background-image: linear-gradient(#171c26, #40e2ec);
   height: 100vh;
   overflow-y: hidden;
   position: relative;
 `;
 
 const Logo = styled.span`
-  font-size: 0px;
   img {
     padding: 20px 10px 20px 15px;
     height: 35px;
     margin-left: 10px;
+    background: white;
+    border-radius: 30%;
   }
 `;
 
@@ -57,11 +54,13 @@ const MenuItem = styled.li`
   color: white;
   font-size: 14px;
   border-bottom: 2px solid white;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
   &:hover {
     cursor: pointer;
     color: #e7e8f0;
     background-color: #14a0cc;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   }
 `;
 

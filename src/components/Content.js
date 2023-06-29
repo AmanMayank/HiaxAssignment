@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import SocialMediaBar from "./SocialMediaBar";
-import Graph from "./Graph";
-import sentimentData from "../data/sentimentData.json";
-import hashtagData from "../data/hashtagsdetails.json";
+import CompanyPortFolio from "./CompanyPortfolio";
 
 function Content() {
   const companies = [
@@ -37,23 +34,9 @@ function Content() {
 
       <NavMenu>{renderedList}</NavMenu>
 
-      <SocialMediaBar />
-
-      <DataContainer>
-        <ButtonContainer>
-          <Button>Sentiment</Button>
-          <Button>Hashtag</Button>
-        </ButtonContainer>
-
-        <GraphContainer>
-          <GraphItem>
-            <Graph data={sentimentData} />
-          </GraphItem>
-          <GraphItem>
-            <Graph data={hashtagData} />
-          </GraphItem>
-        </GraphContainer>
-      </DataContainer>
+      <CompanyPortFolio />
+      <CompanyPortFolio />
+      <CompanyPortFolio />
     </Container>
   );
 }
@@ -62,6 +45,7 @@ const Container = styled.div`
   grid-area: main;
   position: relative;
   background: #9b9eab;
+  overflow: scroll;
 `;
 
 const Header = styled.div`
@@ -103,48 +87,6 @@ const NavItem = styled.li`
     background-color: #191f20;
     color: white;
   }
-`;
-
-const DataContainer = styled.div`
-  height: auto;
-  background-color: #5bc2d2;
-  position: relative;
-  padding: 10px 10px;
-`;
-
-const ButtonContainer = styled.div`
-  height: 10vh;
-  display: flex;
-  margin-left: 2px;
-`;
-
-const Button = styled.button`
-  width: auto;
-  height: 20px;
-  padding: 0px 5px;
-  margin-right: 2px;
-  margin-left: 2px;
-`;
-
-const GraphContainer = styled.div`
-  border: 2px solid black;
-  display: flex;
-  margin: 0px 10px 10px 10px;
-  height: auto;
-  background-image: linear-gradient(to right, #171c26, #40e2ec);
-  margin-top: -30px;
-  // top right bottom left
-`;
-
-const GraphItem = styled.div`
-  display: flex;
-  border: 2px solid black;
-  margin: 10px 10px 10px 10px;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-  text-align: center;
-  justify-content: center;
 `;
 
 export default Content;

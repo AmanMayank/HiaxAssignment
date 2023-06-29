@@ -1,29 +1,30 @@
-import React, { useEffect } from "react";
-
 import Plot from "react-plotly.js";
 
 function Graph({ data }) {
   const graphData = data.stats.instagram.timelineStats.timeline;
   const title = graphData[0].meanSentiment ? "Mean Sentiment" : "Hashtags";
+
   const xaxisData = [];
   const yaxisData = [];
 
-  useEffect(() => {
+  const dateSplit = (date) => {
+    let newdate = date.split("-");
+    return newdate[2];
+  };
+
+  graphData &&
     graphData.map((item, index) => {
-      while (index < 6) {
-        xaxisData.push(item.date);
-        yaxisData.push(item.meanSentiment || item.total);
-      }
+      index < 6 && xaxisData.push(dateSplit(item.date));
+      index < 6 && yaxisData.push(item.meanSentiment || item.total);
     });
-    console.log(xaxisData);
-  }, []);
+  console.log(xaxisData, yaxisData);
 
   return (
     <Plot
       data={[
         {
-          x: [2, 3, 4, 5],
-          y: [16, 5, 11, 9],
+          x: xaxisData,
+          y: yaxisData,
           mode: "lines",
         },
       ]}

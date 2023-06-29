@@ -29,9 +29,10 @@ function Menu() {
 const Container = styled.div`
   grid-area: leftside;
   background-image: linear-gradient(#171c26, #40e2ec);
-  height: 100vh;
   overflow-y: hidden;
-  position: relative;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 `;
 
 const Logo = styled.span`

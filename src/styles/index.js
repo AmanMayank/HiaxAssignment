@@ -6,6 +6,7 @@ const Container = styled.div`
   grid-template-columns: minmax(0, 2fr) minmax(0, 12fr);
   row:gap:20px;
   border: 2px solid black;
+  position:relative;
 `;
 
 export { Container };

@@ -1,14 +1,5 @@
 import styled from "styled-components";
-import {
-  AiFillTwitterCircle,
-  AiFillInstagram,
-  AiFillYoutube,
-  AiFillFacebook,
-  AiOutlineContainer,
-  AiFillRedditCircle,
-} from "react-icons/ai";
-
-import { BsTiktok } from "react-icons/bs";
+import SocialMediaBar from "./SocialMediaBar";
 
 function Content() {
   const companies = [
@@ -43,29 +34,19 @@ function Content() {
 
       <NavMenu>{renderedList}</NavMenu>
 
-      <SocialMediaHeader>
-        <Logo>
-          <AiFillTwitterCircle />
-        </Logo>
-        <Logo>
-          <AiFillInstagram />
-        </Logo>
-        <Logo>
-          <BsTiktok />
-        </Logo>
-        <Logo>
-          <AiFillYoutube />
-        </Logo>
-        <Logo>
-          <AiFillFacebook />
-        </Logo>
-        <Logo>
-          <AiOutlineContainer />
-        </Logo>
-        <Logo>
-          <AiFillRedditCircle />
-        </Logo>
-      </SocialMediaHeader>
+      <SocialMediaBar />
+
+      <DataContainer>
+        <ButtonContainer>
+          <Button>Sentiment</Button>
+          <Button>Hashtag</Button>
+        </ButtonContainer>
+
+        <GraphContainer>
+          <Graph>1</Graph>
+          <Graph>2</Graph>
+        </GraphContainer>
+      </DataContainer>
     </Container>
   );
 }
@@ -117,30 +98,40 @@ const NavItem = styled.li`
   }
 `;
 
-const SocialMediaHeader = styled.div`
-  margin-top: 20px;
-  height: 40px;
-  background-color: #171c26;
-  display: flex;
-  padding: 5px 100px;
-  justify-content: space-between;
-  text-align: center;
+const DataContainer = styled.div`
+  height: 50vh;
+  background-color: #5bc2d2;
+  position: relative;
+  padding: 10px 10px;
 `;
 
-const Logo = styled.div`
-  padding: 5px 0;
-  display: inline-block;
-  color: white;
-  font-size: 30px;
-  background: linear-gradient(#5bc2d2 0 0) var(--p, 0) / var(--p, 0) no-repeat;
-  transition: 0.4s, background-position 0s;
+const ButtonContainer = styled.div`
+  height: 10vh;
+  display: flex;
+  margin-left: 2px;
+`;
 
-  &:hover {
-    transform: scale(1.3);
-    --p: 100%;
-    color: #191f20;
-    cursor: pointer;
-  }
+const Button = styled.button`
+  width: auto;
+  height: 20px;
+  padding: 0px 5px;
+  margin-right: 2px;
+  margin-left: 2px;
+`;
+
+const GraphContainer = styled.div`
+  border: 2px solid black;
+  display: flex;
+  margin: 10px 10px 10px 10px;
+  height: 30vh;
+  // top right bottom left
+`;
+
+const Graph = styled.div`
+  border: 2px solid black;
+  margin: 10px 10px 10px 10px;
+  width: 30%;
+  height: auto;
 `;
 
 export default Content;

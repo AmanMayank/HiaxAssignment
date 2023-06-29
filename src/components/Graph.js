@@ -16,7 +16,7 @@ function Graph({ data }) {
       }
     });
     console.log(xaxisData);
-  }, [graphData, xaxisData, yaxisData]);
+  }, []);
 
   return (
     <Plot

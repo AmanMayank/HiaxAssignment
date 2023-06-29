@@ -4,7 +4,6 @@ import PortFolioContent from "./PortFolioContent";
 import ExcelTable from "./ExcelTable";
 
 function Home({ table }) {
-  console.log("table is = ", table);
   return (
     <Container>
       <Menu />

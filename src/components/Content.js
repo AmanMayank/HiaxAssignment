@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import SocialMediaBar from "./SocialMediaBar";
+import Graph from "./Graph";
+import sentimentData from "../data/sentimentData.json";
+import hashtagData from "../data/hashtagsdetails.json";
 
 function Content() {
   const companies = [
@@ -43,8 +46,12 @@ function Content() {
         </ButtonContainer>
 
         <GraphContainer>
-          <Graph>1</Graph>
-          <Graph>2</Graph>
+          <GraphItem>
+            <Graph data={sentimentData} />
+          </GraphItem>
+          <GraphItem>
+            <Graph data={hashtagData} />
+          </GraphItem>
         </GraphContainer>
       </DataContainer>
     </Container>
@@ -99,7 +106,7 @@ const NavItem = styled.li`
 `;
 
 const DataContainer = styled.div`
-  height: 50vh;
+  height: auto;
   background-color: #5bc2d2;
   position: relative;
   padding: 10px 10px;
@@ -122,16 +129,22 @@ const Button = styled.button`
 const GraphContainer = styled.div`
   border: 2px solid black;
   display: flex;
-  margin: 10px 10px 10px 10px;
-  height: 30vh;
+  margin: 0px 10px 10px 10px;
+  height: auto;
+  background-image: linear-gradient(to right, #171c26, #40e2ec);
+  margin-top: -30px;
   // top right bottom left
 `;
 
-const Graph = styled.div`
+const GraphItem = styled.div`
+  display: flex;
   border: 2px solid black;
   margin: 10px 10px 10px 10px;
-  width: 30%;
+  width: auto;
   height: auto;
+  overflow: hidden;
+  text-align: center;
+  justify-content: center;
 `;
 
 export default Content;

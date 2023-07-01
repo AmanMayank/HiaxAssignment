@@ -1,6 +1,5 @@
 import Menu from "./Menu";
 import PortFolioContent from "./PortFolioContent";
-import ExcelTable from "./ExcelTable";
 import styled from "styled-components";
 import ExcelUpload from "./ExcelUpload";
 

@@ -1,6 +1,6 @@
 import Plot from "react-plotly.js";
 
-function Graph({ data }) {
+function LineGraph({ data }) {
   const graphData = data.stats.instagram.timelineStats.timeline;
   const title = graphData[0].meanSentiment ? "Mean Sentiment" : "Hashtags";
 
@@ -44,4 +44,4 @@ function Graph({ data }) {
   );
 }
 
-export default Graph;
+export default LineGraph;

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
 import SocialMediaBar from "./SocialMediaBar";
-import Graph from "./Graph";
+import LineGraph from "./Graphs/LineGraph";
+import HistogramGraph from "./Graphs/HistogramGraph";
+import BubbleGraph from "./Graphs/BubbleGraph";
 import sentimentData from "../data/sentimentData.json";
 import hashtagData from "../data/hashtagsdetails.json";
 
 function CompanyPortFolio({ name, removeFunction }) {
   const [showSentiment, setShowSentiment] = useState(false);
+  const [showSentiment2, setShowSentiment2] = useState(false);
   const [showHashtag, setShowHashtag] = useState(false);
 
   return (
@@ -20,14 +23,21 @@ function CompanyPortFolio({ name, removeFunction }) {
 
       <DataContainer>
         <ButtonContainer>
-          <Button onClick={() => setShowSentiment(true)}>Mean Sentiment</Button>
+          <Button
+            onClick={() => {
+              setShowSentiment(true);
+              setShowSentiment2(true);
+            }}
+          >
+            Mean Sentiment
+          </Button>
           <Button onClick={() => setShowHashtag(true)}>Hashtag</Button>
         </ButtonContainer>
 
         <GraphContainer>
           {showSentiment && (
             <GraphItem>
-              <Graph data={sentimentData} />
+              <LineGraph data={sentimentData} />
               <RemoveButton onClick={() => setShowSentiment(false)}>
                 Remove
               </RemoveButton>
@@ -35,8 +45,17 @@ function CompanyPortFolio({ name, removeFunction }) {
           )}
           {showHashtag && (
             <GraphItem>
-              <Graph data={hashtagData} />
+              <BubbleGraph data={hashtagData} />
               <RemoveButton onClick={() => setShowHashtag(false)}>
+                Remove
+              </RemoveButton>
+            </GraphItem>
+          )}
+
+          {showSentiment2 && (
+            <GraphItem>
+              <HistogramGraph data={sentimentData} />
+              <RemoveButton onClick={() => setShowSentiment2(false)}>
                 Remove
               </RemoveButton>
             </GraphItem>

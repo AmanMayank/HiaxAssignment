@@ -1,3 +1,5 @@
+Deployed at - https://haix-assignment.web.app/
+
 To run the project in local -
 
 1. npm i
@@ -14,4 +16,8 @@ The App consists of two routes -
    d. User can remove the graph and the selected company by clicking on the resective reove buttons.
 
 2. Table("/table")
-   a. The component displays a table by extracting data from a csv file.
+   a. The component displays an input field to upload CSV.
+   b. The CSV is then ingested and displayed as a table on screen with sortable columns.
+
+Note - The CSV file being uploaded should have the fields separated by either comma " , " or semicolon " ; ".
+   

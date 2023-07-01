@@ -12,7 +12,6 @@ function ExcelTable() {
       );
       let JsonData = csvJSON(response.data);
       if (JsonData.length > 0) {
-        console.log(JsonData);
         setStocks(JsonData);
       }
     } catch (e) {

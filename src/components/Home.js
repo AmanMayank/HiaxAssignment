@@ -2,13 +2,14 @@ import Menu from "./Menu";
 import PortFolioContent from "./PortFolioContent";
 import ExcelTable from "./ExcelTable";
 import styled from "styled-components";
+import ExcelUpload from "./ExcelUpload";
 
 function Home({ table }) {
   return (
     <Container>
       <Menu />
       {!table && <PortFolioContent />}
-      {table && <ExcelTable />}
+      {table && <ExcelUpload />}
     </Container>
   );
 }

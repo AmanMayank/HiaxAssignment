@@ -1,5 +1,6 @@
 import React from "react";
 import Plot from "react-plotly.js";
+import randomColor from "randomcolor";
 
 const _ = require("lodash");
 
@@ -9,7 +10,6 @@ function BubbleGraph({ data }) {
 
   const xaxisData = [];
   const yaxisData = [];
-  const countData = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   const dateSplit = (date) => {
     let newdate = date.split("-");
@@ -19,44 +19,33 @@ function BubbleGraph({ data }) {
   graphData &&
     graphData.map((item, index) => {
       if (!_.isEmpty(item.hashtags)) {
-        console.log(item.hashtags);
         const hashtags = Object.keys(item.hashtags);
         hashtags.map((hash) => {
           yaxisData.length < 10 && yaxisData.push(hash);
         });
         xaxisData.length < 10 && xaxisData.push(dateSplit(item.date));
       }
-      console.log(xaxisData, yaxisData);
     });
+
+  const plotData = yaxisData.map((hash, i) => {
+    return {
+      x: [xaxisData[i]],
+      y: [1],
+      mode: "markers",
+      name: hash,
+      marker: {
+        color: [randomColor()],
+        size: [20],
+      },
+    };
+  });
 
   return (
     <Plot
-      data={[
-        {
-          x: xaxisData,
-          y: countData,
-          mode: "markers",
-          name: yaxisData,
-          marker: {
-            color: [
-              "red",
-              "blue",
-              "black",
-              "brown",
-              "green",
-              "yellow",
-              "black",
-              "gray",
-              "orange",
-              "violet",
-            ],
-            size: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-          },
-        },
-      ]}
+      data={plotData}
       layout={{
         autosize: false,
-        width: 280,
+        width: 400,
         height: 250,
         title: title,
         margin: {

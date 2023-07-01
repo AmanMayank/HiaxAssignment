@@ -4,14 +4,14 @@ import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import styled from "styled-components";
 
 function SortableTable(props) {
-  const { config, csvArray } = props;
+  const { csvArray, headerConfig } = props;
 
   const { sortOrder, sortBy, setSortColumn, sortedData } = useSort(
     csvArray,
-    config
+    headerConfig
   );
 
-  const updatedConfig = config.map((column) => {
+  const updatedConfig = headerConfig.map((column) => {
     if (!column.sortValue) {
       return column;
     }

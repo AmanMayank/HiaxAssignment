@@ -5,6 +5,7 @@ import SortableTable from "./SortableTable";
 function ExcelUpload() {
   const [csvFile, setCsvFile] = useState();
   const [csvArray, setCsvArray] = useState([]);
+  const [headers, setHeaders] = useState([]);
 
   const submit = () => {
     const file = csvFile;
@@ -20,8 +21,16 @@ function ExcelUpload() {
   };
 
   const processCSV = (str, delim = ",") => {
-    const headers = str.slice(0, str.indexOf("\n")).split(delim);
-    const rows = str.slice(str.indexOf("\n") + 1).split("\n");
+    const updatedStr1 = str.replace(/"/g, "");
+    const updatedStr = updatedStr1.replace(/;/g, ",");
+
+    const headers = updatedStr.slice(0, updatedStr.indexOf("\n")).split(delim);
+    const rows = updatedStr.slice(updatedStr.indexOf("\n") + 1).split("\n");
+
+    const headerconfig = headers.reduce((obj, header, i) => {
+      obj[i] = header;
+      return obj;
+    }, []);
 
     const newArray = rows.map((row) => {
       const values = row.split(delim);
@@ -31,27 +40,18 @@ function ExcelUpload() {
       }, {});
       return eachObject;
     });
-    // console.log(newArray);
+
+    setHeaders(headerconfig);
     setCsvArray(newArray);
   };
 
-  const config = [
-    {
-      label: "Symbol",
-      render: (stock) => stock.Symbol,
-      sortValue: (stock) => stock.Symbol,
-    },
-    {
-      label: "Name",
-      render: (stock) => stock.Name,
-      sortValue: (stock) => stock.Name,
-    },
-    {
-      label: "Sector",
-      render: (stock) => stock.Sector,
-      sortValue: (stock) => stock.Sector,
-    },
-  ];
+  const headerConfig = headers.map((header, i) => {
+    return {
+      label: header,
+      render: (stock) => stock[header],
+      sortValue: (stock) => stock[header],
+    };
+  });
 
   return (
     <Container>
@@ -68,6 +68,7 @@ function ExcelUpload() {
         <button
           onClick={(e) => {
             e.preventDefault();
+            setCsvArray([]);
             if (csvFile) submit();
           }}
         >
@@ -75,7 +76,9 @@ function ExcelUpload() {
         </button>
       </Form>
 
-      <SortableTable csvArray={csvArray} config={config} />
+      {csvArray.length > 0 && (
+        <SortableTable csvArray={csvArray} headerConfig={headerConfig} />
+      )}
     </Container>
   );
 }
@@ -83,8 +86,7 @@ function ExcelUpload() {
 const Container = styled.div`
   grid-area: main;
   position: relative;
-  background: #9b9eab;
-  overflow: hidden;
+  max-width: 100vw;
 `;
 
 const Form = styled.form`

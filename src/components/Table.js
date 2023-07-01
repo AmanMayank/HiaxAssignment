@@ -33,8 +33,8 @@ function Table({ csvArray, config }) {
 }
 
 const TableContaier = styled.div`
-  margin: auto;
-  max-width: 50%;
+  margin-left: 50px;
+  max-width: 100%;
   table {
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
     padding: 4px;
@@ -58,8 +58,9 @@ const Body = styled.tbody`
   td {
     border: 1px solid #443c68;
     width: auto;
+    max-height: 10px;
     padding: 10px 10px;
-    line-height: 1.7;
+    line-height: 1;
   }
 `;
 
